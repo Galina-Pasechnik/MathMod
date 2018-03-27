@@ -60,4 +60,18 @@ formula3 = as.formula(paste("h2o_flux ~ LE + RH +
 mod4=lm(formula3, data = tbl)
 anova(mod4)
 summary(mod4)
-
+#взаимодействия переменных
+mod5 = lm(h2o_flux ~ (LE + RH + 
+     VPD + un_LE + un_h2o_flux + h2o_var) ^2, data = tbl)
+mod5
+anova(mod5)
+summary(mod5)
+mod6 = lm (h2o_flux ~ LE + RH + un_LE + un_h2o_flux + LE:RH +LE:VPD + LE:h2o_var + RH:VPD 
+           + VPD:un_LE + VPD:un_h2o_flux + un_LE:un_h2o_flux + un_LE:h2o_var + un_h2o_flux:h2o_var, data= tbl)                 
+mod6      
+anova(mod6)
+summary(mod6)
+mod7 = lm (h2o_flux ~ LE + RH + un_LE + un_h2o_flux + LE:RH +LE:VPD + RH:VPD + VPD:un_LE + 
+          VPD:un_h2o_flux, data= tbl)  
+anova(mod7)
+summary(mod7)
